@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FormController {
+class FormSupportController {
   late BuildContext context;
 
   Future<void> init(BuildContext context) async {

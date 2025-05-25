@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_uh_app/src/support/form/form_controller.dart';
+import 'package:gestion_uh_app/src/support/form/form_support_controller.dart';
 
-class FormPage extends StatefulWidget {
-  const FormPage({super.key});
+class FormSupportPage extends StatefulWidget {
+  const FormSupportPage({super.key});
 
   @override
-  State<FormPage> createState() => _FormPageState();
+  State<FormSupportPage> createState() => _FormSupportPageState();
 }
 
-class _FormPageState extends State<FormPage> {
-  final FormController _controller = FormController();
+class _FormSupportPageState extends State<FormSupportPage> {
+  final FormSupportController _controller = FormSupportController();
 
   @override
   void initState() {

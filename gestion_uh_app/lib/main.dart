@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_uh_app/src/support/form/form_page.dart';
+import 'package:gestion_uh_app/src/support/form/form_support_page.dart';
 import 'package:gestion_uh_app/src/support/support_page.dart';
 
 void main() {
@@ -13,10 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Gestión UH App',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: HomePage(),
-      routes: {
-        '/support': (context) => SupportPage(),
-        '/support/form': (context) => FormPage(),
-      },
+      routes: {'/support': (context) => SupportPage()},
     );
   }
 }

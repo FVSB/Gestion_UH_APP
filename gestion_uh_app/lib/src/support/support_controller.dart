@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_uh_app/src/support/form/form_page.dart';
+import 'package:gestion_uh_app/src/support/form/form_support_page.dart';
 
 class SupportController {
   late BuildContext context;
@@ -11,7 +11,7 @@ class SupportController {
   void navigateToSupportForm() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => FormPage()),
+      MaterialPageRoute(builder: (context) => FormSupportPage()),
     );
   }
 }
