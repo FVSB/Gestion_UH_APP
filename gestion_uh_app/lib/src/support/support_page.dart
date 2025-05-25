@@ -1,6 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_uh_app/src/support/support_controller.dart';
 
-class SupportPage extends StatelessWidget {
+class SupportPage extends StatefulWidget {
+  const SupportPage({super.key});
+
+  @override
+  State<SupportPage> createState() => _SupportPageState();
+}
+
+class _SupportPageState extends State<SupportPage> {
+  final SupportController _controller = SupportController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   static const textColor = Color(0xFF111418);
   static const iconBgColor = Color(0xFFF0F2F4);
 
@@ -40,6 +55,7 @@ class SupportPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _controller.init(context); // Aquí ya tienes context
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar(),
@@ -95,7 +111,7 @@ class SupportPage extends StatelessWidget {
     return buildOption(
       icon: Icons.chat_bubble_outline,
       text: 'Formulario de soporte',
-      onTap: () {},
+      onTap: _controller.navigateToSupportForm,
     );
   }
 
