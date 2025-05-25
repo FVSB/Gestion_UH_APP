@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_uh_app/src/support/form/form_page.dart';
 
 class SupportController {
   late BuildContext context;
@@ -8,6 +9,9 @@ class SupportController {
   }
 
   void navigateToSupportForm() {
-    Navigator.pushNamed(context, '/support/form');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FormPage()),
+    );
   }
 }

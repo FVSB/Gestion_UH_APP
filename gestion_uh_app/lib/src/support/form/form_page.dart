@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_uh_app/src/support/form/form_controller.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({super.key});
@@ -8,6 +9,13 @@ class FormPage extends StatefulWidget {
 }
 
 class _FormPageState extends State<FormPage> {
+  final FormController _controller = FormController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController categoryController = TextEditingController();
@@ -38,6 +46,7 @@ class _FormPageState extends State<FormPage> {
 
   @override
   Widget build(BuildContext context) {
+    _controller.init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar(),
@@ -69,7 +78,10 @@ class _FormPageState extends State<FormPage> {
 
   AppBar _appBar() {
     return AppBar(
-      leading: IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
+      leading: IconButton(
+        onPressed: _controller.navigateToSupportMain,
+        icon: Icon(Icons.arrow_back),
+      ),
       backgroundColor: Colors.white,
       elevation: 0,
     );
@@ -137,12 +149,7 @@ class _FormPageState extends State<FormPage> {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {
-          // Aquí puedes manejar el envío
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(const SnackBar(content: Text('Issue submitted!')));
-        },
+        onPressed: _controller.submitReport,
         child: Text(
           'Enviar',
           style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.5),
