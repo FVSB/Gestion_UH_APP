@@ -9,14 +9,10 @@ class FaqPage extends StatefulWidget {
 }
 
 class _FaqPageState extends State<FaqPage> {
+  TextEditingController _searchController = TextEditingController();
   final FaqController _controller = FaqController();
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  final faqs = [
+  List<String> _allFaqs = [
     '¿Qué funcionalidades ofrece esta app?',
     '¿Cómo puedo iniciar sesión en la app?',
     '¿Puedo ver mis calificaciones desde la app?',
@@ -30,6 +26,29 @@ class _FaqPageState extends State<FaqPage> {
     '¿Puedo actualizar mis datos personales desde la app?',
     '¿Qué hago si la app no funciona correctamente?',
   ];
+
+  List<String> _filteredFaqs = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredFaqs = List.from(_allFaqs);
+    _searchController.addListener(_filterFaqs);
+  }
+
+  void _filterFaqs() {
+    final query = _searchController.text.toLowerCase();
+    setState(() {
+      _filteredFaqs =
+          _allFaqs.where((faq) => faq.toLowerCase().contains(query)).toList();
+    });
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +86,7 @@ class _FaqPageState extends State<FaqPage> {
       child: SizedBox(
         width: double.infinity,
         child: TextField(
+          controller: _searchController,
           decoration: InputDecoration(
             hintText: 'Busca preguntas frecuentes',
             prefixIcon: Icon(Icons.search),
@@ -97,50 +117,57 @@ class _FaqPageState extends State<FaqPage> {
 
   Widget _faqsList() {
     return Expanded(
-      child: ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        itemCount: faqs.length,
-        itemBuilder: (context, index) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Card(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-                side: BorderSide(color: Color(0xFFDCE0E5)),
-              ),
-              margin: EdgeInsets.only(bottom: 10),
-              child: ExpansionTile(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                backgroundColor: Color.fromARGB(10, 220, 224, 229),
-                collapsedBackgroundColor: Colors.white,
-                title: Text(
-                  faqs[index],
-                  style: TextStyle(
-                    color: Color(0xFF111418),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16, bottom: 12),
-                    child: Text(
-                      '',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 255, 5, 5),
-                        fontSize: 14,
+      child:
+          _filteredFaqs.isEmpty
+              ? Center(child: Text('No se encontraron resultados.'))
+              : ListView.builder(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                itemCount: _filteredFaqs.length,
+                itemBuilder: (context, index) {
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Card(
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        side: BorderSide(color: Color(0xFFDCE0E5)),
+                      ),
+                      margin: EdgeInsets.only(bottom: 10),
+                      child: ExpansionTile(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        backgroundColor: Color.fromARGB(10, 220, 224, 229),
+                        collapsedBackgroundColor: Colors.white,
+                        title: Text(
+                          _filteredFaqs[index],
+                          style: TextStyle(
+                            color: Color(0xFF111418),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 16,
+                              right: 16,
+                              bottom: 12,
+                            ),
+                            child: Text(
+                              '',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 255, 5, 5),
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                ],
+                  );
+                },
               ),
-            ),
-          );
-        },
-      ),
     );
   }
 
