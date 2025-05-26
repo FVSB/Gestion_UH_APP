@@ -156,7 +156,7 @@ class _FaqPageState extends State<FaqPage> {
             style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.5),
           ),
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF1980E6),
+            backgroundColor: Color(0xFF1980E6),
             foregroundColor: Colors.white,
             minimumSize: Size.fromHeight(48),
             shape: RoundedRectangleBorder(

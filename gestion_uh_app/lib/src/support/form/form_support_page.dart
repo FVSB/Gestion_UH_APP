@@ -28,9 +28,11 @@ class _FormSupportPageState extends State<FormSupportPage> {
     required String labelText,
   }) {
     return TextField(
+      cursorColor: Color(0xFF1980E6),
       controller: controller,
       decoration: InputDecoration(
         labelText: labelText,
+
         contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(13),
@@ -153,11 +155,15 @@ class _FormSupportPageState extends State<FormSupportPage> {
         onPressed: _controller.submitReport,
         child: Text(
           'Enviar',
-          style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.5),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            letterSpacing: 0.5,
+            fontSize: 16,
+          ),
         ),
         style: ElevatedButton.styleFrom(
-          foregroundColor: textColor,
-          backgroundColor: Color(0xFFF0F2F4),
+          foregroundColor: Colors.white,
+          backgroundColor: Color(0xFF1980E6),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(13),
           ),
