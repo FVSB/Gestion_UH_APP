@@ -83,6 +83,7 @@ class _FormSupportPageState extends State<FormSupportPage> {
         icon: Icon(Icons.arrow_back),
       ),
       backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
       elevation: 0,
     );
   }
@@ -95,7 +96,7 @@ class _FormSupportPageState extends State<FormSupportPage> {
         style: TextStyle(
           color: textColor,
           fontWeight: FontWeight.bold,
-          fontSize: 22,
+          fontSize: 20,
           letterSpacing: -0.5,
         ),
       ),

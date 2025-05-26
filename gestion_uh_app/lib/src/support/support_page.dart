@@ -100,7 +100,7 @@ class _SupportPageState extends State<SupportPage> {
           style: TextStyle(
             color: textColor,
             fontWeight: FontWeight.bold,
-            fontSize: 22,
+            fontSize: 20,
           ),
         ),
       ),
@@ -119,7 +119,7 @@ class _SupportPageState extends State<SupportPage> {
     return buildOption(
       icon: Icons.help_outline,
       text: 'Sección de FAQs',
-      onTap: () {},
+      onTap: _controller.navigateToFaqPage,
     );
   }
 
