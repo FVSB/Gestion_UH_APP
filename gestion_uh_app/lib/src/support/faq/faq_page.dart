@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_uh_app/src/support/faq/faq_controller.dart';
 
 class FaqPage extends StatefulWidget {
   const FaqPage({super.key});
@@ -8,6 +9,13 @@ class FaqPage extends StatefulWidget {
 }
 
 class _FaqPageState extends State<FaqPage> {
+  final FaqController _controller = FaqController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   final faqs = [
     '¿Qué funcionalidades ofrece esta app?',
     '¿Cómo puedo iniciar sesión en la app?',
@@ -25,6 +33,7 @@ class _FaqPageState extends State<FaqPage> {
 
   @override
   Widget build(BuildContext context) {
+    _controller.init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _appBar(),
@@ -36,6 +45,8 @@ class _FaqPageState extends State<FaqPage> {
             _title(),
             SizedBox(height: 16),
             _faqsList(),
+            SizedBox(height: 16),
+            _buttonContact(),
           ],
         ),
       ),
@@ -129,6 +140,30 @@ class _FaqPageState extends State<FaqPage> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buttonContact() {
+    return SizedBox(
+      width: double.infinity,
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: ElevatedButton(
+          onPressed: _controller.navigateToSupportForm,
+          child: Text(
+            'Contactar soporte',
+            style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.5),
+          ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF1980E6),
+            foregroundColor: Colors.white,
+            minimumSize: Size.fromHeight(48),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),
       ),
     );
   }
